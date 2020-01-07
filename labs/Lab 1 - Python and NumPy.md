@@ -14,7 +14,7 @@ jupyter:
 ---
 
 # Name(s)
-**PUT YOUR FULL NAME(S) HERE**
+**Lindsey Henry**
 
 
 **Instructions:** This is an individual assignment, but you may discuss your code with your neighbors.
@@ -36,7 +36,8 @@ Please read and reference the following as your progress through this course.
 **In the space provided below, what are three things that still remain unclear or need further explanation?**
 
 
-**YOUR ANSWER HERE**
+What are some examples of magic commands and why would you use them? Which ones will be the most useful for this course? 
+
 
 
 ## Exercises 1-7
@@ -46,46 +47,81 @@ For the following exercises please read the Python appendix in the Marsland text
 ## Exercise 1
 
 ```python
-# YOUR SOLUTION HERE
-#a=1000
-print('this is my answer',a+1) 
+import numpy as np
+a = np.full((6,4), 2)
+a
 ```
 
 ## Exercise 2
 
 ```python
-# YOUR SOLUTION HERE
-a=2000
+b = np.full((6,4),1)
+np.fill_diagonal(b, 3)
+b
 ```
 
 ## Exercise 3
 
-```python
-# YOUR SOLUTION HERE
-```
+
+a * b multiplies the elements of the same index from each numpy array and requires the arrays be the same size. This works because a and b are the same size. 
+np.dot(a,b) takes the dot product of the two matrices which requires matrix a to have the same number of columns as b has rows, these dimensions do not match so mathematically it does not work. 
+
 
 ## Exercise 4
 
-```python
-# YOUR SOLUTION HERE
-```
+
+The result of matrix multiplication is always the outer dimensions of the matrices being multiplied.
+
 
 ## Exercise 5
 
 ```python
-# YOUR SOLUTION HERE
+def printingFunc():
+    print("Something")
+printingFunc()
 ```
 
 ## Exercise 6
 
 ```python
-# YOUR SOLUTION HERE
+def randomStats():
+    a = np.random.random_sample((1,5)) 
+    print(a)
+    print("sum: " + str(np.sum(a)))
+    print("mean: " + str(np.mean(a)))
+    print("")
+    
+randomStats()
+randomStats()
+randomStats()
+
+
 ```
 
 ## Exercise 7
 
 ```python
-# YOUR SOLUTION HERE
+#Write a function that consists of a set of loops that run through an array
+#and count the number of ones in it. Do the same thing using the where() function
+#(use info(where) to find out how to use it).
+
+c = np.full((2,5), 1)
+
+def numOnesLoop(a):
+    a = a.flat
+    count = 0
+    for i in a:
+        if i == 1:
+            count += 1
+    return count
+
+print(numOnes(c))
+
+
+def numOnesWhere(a):
+    returnnp.where(a == 1, a)
+
+numOnesWhere(c)
 ```
 
 ## Excercises 8-???
