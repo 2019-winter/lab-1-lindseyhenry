@@ -36,6 +36,7 @@ Please read and reference the following as your progress through this course.
 **In the space provided below, what are three things that still remain unclear or need further explanation?**
 
 
+###NEED TO FINISH###
 What are some examples of magic commands and why would you use them? Which ones will be the most useful for this course? 
 
 
@@ -62,16 +63,20 @@ b
 
 ## Exercise 3
 
-
-a * b multiplies the elements of the same index from each numpy array and requires the arrays be the same size. This works because a and b are the same size. 
-np.dot(a,b) takes the dot product of the two matrices which requires matrix a to have the same number of columns as b has rows, these dimensions do not match so mathematically it does not work. 
-
+```python
+a * b
+print("a * b multiplies element by element") 
+#np.dot(a,b)
+print("np.dot(a,b) takes the dot product of the two matrices which requires the inner dimensions to match. ")
+```
 
 ## Exercise 4
 
-
-The result of matrix multiplication is always the outer dimensions of the matrices being multiplied.
-
+```python
+np.dot(a.transpose(),b)
+np.dot(a,b.transpose())
+print("The result of matrix multiplication is always the outer dimensions of the matrices being multiplied.")
+```
 
 ## Exercise 5
 
@@ -94,33 +99,27 @@ def randomStats():
 randomStats()
 randomStats()
 randomStats()
-
-
 ```
 
 ## Exercise 7
 
 ```python
-#Write a function that consists of a set of loops that run through an array
-#and count the number of ones in it. Do the same thing using the where() function
-#(use info(where) to find out how to use it).
-
-c = np.full((2,5), 1)
+c = np.full((2,15), 1)
 
 def numOnesLoop(a):
-    a = a.flat
     count = 0
-    for i in a:
-        if i == 1:
-            count += 1
+    for i in range(a.shape[0]):
+        for j in range(a.shape[1]):
+            if a[i,j] == 1:
+                count += 1
     return count
 
-print(numOnes(c))
+print(numOnesLoop(c))
 
 
 def numOnesWhere(a):
-    returnnp.where(a == 1, a)
-
+    b = np.where(a==1)
+    return a[b].size
 numOnesWhere(c)
 ```
 
@@ -132,28 +131,53 @@ While the Marsland book avoids using another popular package called Pandas, we w
 Repeat exercise A.1 from Marsland, but create a Pandas DataFrame instead of a NumPy array.
 
 ```python
-# YOUR SOLUTION HERE
+import pandas as pd
+adf = pd.DataFrame(np.ones((6,4))*2)
+adf
 ```
 
 ## Exercise 9
 Repeat exercise A.2 using a DataFrame instead.
 
 ```python
-# YOUR SOLUTION HERE
+b = np.full((6,4),1)
+np.fill_diagonal(b, 3)
+bdf = pd.DataFrame(b)
+bdf
 ```
 
 ## Exercise 10
 Repeat exercise A.3 using DataFrames instead.
 
 ```python
-# YOUR SOLUTION HERE
+adf*bdf
+print(" adf*bdf works because this just multiplies elements that align. ")
+print(" adf.dot(bdf) does not work because it takes the mathematical dot product which requires outer dimensions to align in order to work. ")
 ```
 
 ## Exercise 11
 Repeat exercise A.7 using a dataframe.
 
 ```python
-# YOUR SOLUTION HERE
+# Write a function that consists of a set of loops that run through an array and count the number of ones in it. 
+#Do the same thing using the where() function (use info(where) to find out how to use it).
+c =  pd.DataFrame(np.ones((6,4)))
+
+def numOnesLoop(a):
+    count = 0
+    for i in range(a.shape[0]):
+        for j in range(a.shape[1]):
+            if a.iloc[i,j] == 1:
+                count += 1
+    return count
+
+print(numOnesLoop(c))
+
+
+def numOnesWhere(a):
+    b = a.where(a==1)
+    return sum(b.count())
+numOnesWhere(c)
 ```
 
 ## Exercises 12-14
@@ -173,22 +197,27 @@ Notice how we have nice headers and mixed datatypes? That is one of the reasons 
 How do you select the ``name`` column without using .iloc?
 
 ```python
-## YOUR SOLUTION HERE
+titanic_df['name']
 ```
 
 ## Exercise 13
 After setting the index to ``sex``, how do you select all passengers that are ``female``? And how many female passengers are there?
 
 ```python
-## YOUR SOLUTION HERE
 titanic_df.set_index('sex',inplace=True)
+titanic_df.loc['female']
 ```
 
 ## Exercise 14
 How do you reset the index?
 
 ```python
-## YOUR SOLUTION HERE
+titanic_df.reset_index(inplace = True)
+titanic_df
+```
+
+```python
+
 ```
 
 ```python
