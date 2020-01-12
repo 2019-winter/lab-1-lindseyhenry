@@ -36,9 +36,9 @@ Please read and reference the following as your progress through this course.
 **In the space provided below, what are three things that still remain unclear or need further explanation?**
 
 
-###NEED TO FINISH###
 What are some examples of magic commands and why would you use them? Which ones will be the most useful for this course? 
-
+Are there any disadvantages to using Jupyter Notebook? 
+Will we be using any Juptyer widgets for this class?
 
 
 ## Exercises 1-7
